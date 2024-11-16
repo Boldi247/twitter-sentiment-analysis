@@ -1,4 +1,5 @@
-## About the project
+
+## About the project
 
 This project was created for the course 'Data and web minining', University of Debrecen, CS MSc
 
