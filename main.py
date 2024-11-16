@@ -28,7 +28,7 @@ def main():
         stratify=processed_training["label"]
     )
 
-    print("Shape of x_train: ", x_train.shape)
+    print("\nShape of x_train: ", x_train.shape)
     print("Shape of x_test: ", x_test.shape)
 
     clf = Pipeline([
@@ -40,7 +40,7 @@ def main():
 
     #Getting the prediction
     y_pred = clf.predict(x_test)
-    print("Accuracy score: ", accuracy_score(y_test, y_pred))
+    print("\nAccuracy score: ", accuracy_score(y_test, y_pred))
     print("Classification report: \n", classification_report(y_test, y_pred))
 
     #Testing the model
