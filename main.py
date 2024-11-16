@@ -9,6 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 #from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score , classification_report
+import pandas as pd
 
 warnings.filterwarnings("ignore")
 
@@ -43,8 +44,28 @@ def main():
     print("\nAccuracy score: ", accuracy_score(y_test, y_pred))
     print("Classification report: \n", classification_report(y_test, y_pred))
 
-    #Testing the model
-    #TODO
+    classes = training["label"].unique()
+    print("We can predict which class a tweet belongs to. We have the following classes: ", classes)
+
+    processed_testing = preprocess(test)
+    print("Processed testing (head): \n", processed_testing.head())
+
+    results_csv = pd.DataFrame({
+        "Tweet": [],
+        "True label": [],
+        "Predicted label": []
+    })
+
+    for i in range(processed_testing.shape[0]):
+        prediction = clf.predict([processed_testing["processed"][i]])
+
+        results_csv = pd.concat([results_csv, pd.DataFrame({
+            "Tweet": [processed_testing["text"][i]],
+            "True label": [processed_testing["label"][i]],
+            "Predicted label": [classes[prediction-1][0]]
+        })], ignore_index=True)
+
+    results_csv.to_csv("results.csv", index=False)
 
 if __name__ == "__main__":
     main()
