@@ -19,7 +19,6 @@ def main():
     le_model = LabelEncoder()
     processed_training["label"] = le_model.fit_transform(processed_training["label"])
     print("Processed training (head): \n", processed_training.head())
-    print("Training data (head): \n", training.head())
 
     x_train, x_test, y_train, y_test = train_test_split(
         processed_training["processed"],
@@ -43,6 +42,9 @@ def main():
     y_pred = clf.predict(x_test)
     print("Accuracy score: ", accuracy_score(y_test, y_pred))
     print("Classification report: \n", classification_report(y_test, y_pred))
+
+    #Testing the model
+    #TODO
 
 if __name__ == "__main__":
     main()

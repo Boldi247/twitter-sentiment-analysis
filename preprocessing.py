@@ -5,7 +5,8 @@ nlp = spacy.load("en_core_web_sm")
 
 def preprocess(df: pd.DataFrame):
 
-    df = df.head() # For testing, remove head if you want to process the whole dataset
+    #get first 100 elements
+    df = df.head(300)
 
     df.dropna(inplace=True)
     df["processed"] = df["text"].apply(process_text)
