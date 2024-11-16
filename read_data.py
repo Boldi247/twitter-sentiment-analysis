@@ -10,5 +10,6 @@ def read_data():
 
     new_columns = ["id", "origin", "label", "text"]
     training.columns = new_columns
+    test.columns = new_columns
 
     return training, test
