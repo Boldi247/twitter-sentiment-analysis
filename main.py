@@ -34,7 +34,7 @@ def main():
 
     clf = Pipeline([
         ('vectorizer_tri_grams', TfidfVectorizer()),
-        ('naive_bayes', (RandomForestClassifier()))
+        ('naive_bayes', (MultinomialNB()))
     ])
 
     clf.fit(x_train, y_train)
